@@ -217,4 +217,5 @@ Admin side:
 ```
 http://localhost:8000/products
 
-<img width="676" height="212" alt="image" src="https://github.com/user-attachments/assets/70a76e90-15d9-460d-a70a-6620fe376266" />
+<img width="676" height="212" alt="image" src="https://github.com/user-attachments/assets/75d91b74-8b51-4ea6-b766-ff5465798d87" />
+
