@@ -1,6 +1,6 @@
 
 
-# 🔍 Laravel 11 – Dynamic Filtering System (Search + Price Sorting)
+Laravel 11 – Dynamic Filtering System (Search + Price Sorting)
 
 ![Laravel](https://img.shields.io/badge/Laravel-11-orange)
 ![PHP](https://img.shields.io/badge/PHP-8.2-blue)
@@ -21,7 +21,7 @@ Source content: Dynamic Filtering System document fileciteturn2file0
 
 ---
 
-# 🌟 Features Included
+ Features Included
 
 | Feature | Description |
 |--------|-------------|
@@ -34,7 +34,7 @@ Source content: Dynamic Filtering System document fileciteturn2file0
 
 ---
 
-# 🏗 Step 1 – Install Laravel 11
+ Step 1 – Install Laravel 11
 
 ```bash
 composer create-project laravel/laravel example-app
@@ -42,7 +42,7 @@ composer create-project laravel/laravel example-app
 
 ---
 
-# 🛢 Step 2 – Configure Database (.env)
+ Step 2 – Configure Database (.env)
 
 ```
 DB_CONNECTION=mysql
@@ -55,7 +55,7 @@ DB_PASSWORD=root
 
 ---
 
-# 🗄 Step 3 – Product Migration
+ Step 3 – Product Migration
 
 Migration includes:
 
@@ -74,36 +74,33 @@ php artisan migrate
 ```
 
 ---
-
-# 🛣 Step 4 – Resource Route
+ Step 4 – Resource Route
 
 ```php
 Route::resource('products', ProductController::class);
 ```
 
 ---
+ Step 5 – Dynamic Filtering Logic (Controller)
 
-# 🧠 Step 5 – Dynamic Filtering Logic (Controller)
-
-## 📌 Full index() Method (Search + Sorting + Pagination)
-
-### 🔍 SEARCH LOGIC  
+ Full index() Method (Search + Sorting + Pagination)
+ SEARCH LOGIC  
 - If keyword is numeric → price exact match  
 - Otherwise → text search in multiple columns  
 
-### 💰 SORT LOGIC  
+ SORT LOGIC  
 Supports:
 - price-asc
 - price-desc
 
-### 📄 PAGINATION  
+ PAGINATION  
 Shows 3 products per page.
 
 ---
 
-# 🖼 Step 6 – Blade UI (Products List)
+ Step 6 – Blade UI (Products List)
 
-### 🔍 Search + Sort Panel
+ Search + Sort Panel
 
 ```html
 <input type="text" id="search" class="form-control" placeholder="Search products...">
@@ -117,7 +114,7 @@ Shows 3 products per page.
 
 ---
 
-# 🔌 AJAX Script (Dynamic Filtering)
+ AJAX Script (Dynamic Filtering)
 
 ```javascript
 $('#search').on('keyup', function(){
@@ -130,8 +127,7 @@ $('#sort').on('change', function(){
 ```
 
 ---
-
-# 🖼 Product Table Formatting
+Product Table Formatting
 
 Includes:
 
@@ -144,7 +140,7 @@ Includes:
 
 ---
 
-# 📝 Create & Edit Pages
+ Create & Edit Pages
 
 Both forms include:
 
@@ -158,7 +154,7 @@ Both forms include:
 
 ---
 
-# 🧱 Layout Requirements
+ Layout Requirements
 
 Admin layout uses:
 
@@ -173,8 +169,7 @@ resources/views/layouts/admin.blade.php
 ```
 
 ---
-
-# ▶ How to Run Project
+ How to Run Project
 
 ```bash
 php artisan serve
