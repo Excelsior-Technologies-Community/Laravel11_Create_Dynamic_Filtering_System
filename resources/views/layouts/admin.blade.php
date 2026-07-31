@@ -39,5 +39,54 @@
     <!-- PAGE SPECIFIC SCRIPTS (Select2 JS etc.) -->
     @stack('scripts')
 
+    <a href="{{ route('comparison.index') }}" class="btn btn-primary position-fixed bottom-0 end-0 m-3 rounded-pill shadow" id="comparisonBadge" style="z-index: 999; text-decoration: none; color: #fff;">
+        Compare (<span id="comparisonCount">0</span>)
+    </a>
+
+    <script>
+    function updateComparisonCount() {
+        fetch(`{{ route('comparison.count') }}`)
+            .then(res => res.json())
+            .then(data => {
+                const badge = document.getElementById('comparisonCount');
+                if (badge) badge.textContent = data.count;
+            });
+    }
+
+    function addToComparison(id) {
+        fetch(`{{ route('comparison.add', ':id') }}`.replace(':id', id), {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                updateComparisonCount();
+                alert('Added to comparison');
+            }
+        });
+    }
+
+    function removeFromComparison(id) {
+        fetch(`{{ route('comparison.remove', ':id') }}`.replace(':id', id), {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                updateComparisonCount();
+            }
+        });
+    }
+
+    updateComparisonCount();
+    </script>
 </body>
 </html>

@@ -4,26 +4,32 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerProductsController;
-
-
-// Product routes
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ComparisonController;
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-// Customer product viewing route
 Route::get('/customer/products', [CustomerProductsController::class, 'index'])->name('customer.products');
+Route::get('/customer/products/{product}', [CustomerProductsController::class, 'show'])->name('customer.products.show');
 
+Route::get('/search/suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
+Route::get('/search/recent', [SearchController::class, 'recent'])->name('search.recent');
+Route::post('/search/recent', [SearchController::class, 'saveRecent'])->name('search.saveRecent');
 
+Route::middleware('auth')->group(function () {
+    Route::post('/comparison/add/{id}', [ComparisonController::class, 'add'])->name('comparison.add');
+    Route::post('/comparison/remove/{id}', [ComparisonController::class, 'remove'])->name('comparison.remove');
+    Route::get('/comparison', [ComparisonController::class, 'index'])->name('comparison.index');
+    Route::get('/comparison/count', [ComparisonController::class, 'count'])->name('comparison.count');
+});
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
